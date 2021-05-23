@@ -1,9 +1,7 @@
 package com.company;
 
-import javax.lang.model.type.NullType;
 import java.util.HashMap;
 import java.util.Scanner;
-import java.util.function.Consumer;
 
 public class OptionsMenu {
 
@@ -32,6 +30,18 @@ public class OptionsMenu {
             System.exit(0);
         });
 
+        options.put("print--plate",()-> {
+            System.out.println(controller.getRegisteredPlates());
+        });
+
+        options.put("print--blacklist",()-> {
+            System.out.println(controller.getBlacklist());
+        });
+
+        options.put("print--addr",()-> {
+            System.out.println(controller.getAddresses());
+        });
+
 
 
         while (true){
@@ -40,7 +50,13 @@ public class OptionsMenu {
                     "remove: remove an adress\n" +
                     "request: request access\n" +
                     "exit: exit system");
-            options.get(scanner.next()).run();
+            String arg = scanner.next();
+            if (options.containsKey(arg)){
+                options.get(arg).run();
+
+            } else {
+                System.out.println("Invalid argument");
+            }
         }
 
 

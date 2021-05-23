@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class Database {
     public ArrayList<String> content;
-    private String databaseName;
+    private final String databaseName;
 
     public ArrayList<String> getContent() {
         return content;
@@ -32,7 +32,7 @@ public class Database {
    }
 
    private ArrayList<String> readDatabase(String databaseName){
-       ArrayList<String> content = new ArrayList<String>();
+       ArrayList<String> content;
 
        try
        {
@@ -40,6 +40,10 @@ public class Database {
            ObjectInputStream ois = new ObjectInputStream(fis);
 
            content = (ArrayList) ois.readObject();
+
+           if (content == null){
+               content = new ArrayList<>();
+           }
 
 
            ois.close();
@@ -64,4 +68,8 @@ public class Database {
        return content;
    }
 
+    @Override
+    public String toString() {
+        return content.toString();
+    }
 }

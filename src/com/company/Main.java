@@ -5,6 +5,9 @@ public class Main {
     public static void main(String[] args) {
 	// write your code here
 
-        Database plates = new Database("blacklist.db");
+        // remember to save DATABASE!!!
+        new OptionsMenu();
+
+
     }
 }
